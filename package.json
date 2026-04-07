@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:backend": "cd server && npm run dev",
+    "dev:all": "concurrently --names frontend,backend --prefix-colors cyan,yellow \"npm run dev\" \"npm run dev:backend\"",
+    "all": "npm run dev:all",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -13,6 +16,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "concurrently": "^8.2.2",
     "@vitejs/plugin-react": "^4.2.1",
     "vite": "^5.4.2",
     "autoprefixer": "^10.4.19",

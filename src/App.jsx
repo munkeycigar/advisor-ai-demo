@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import clients from './data/clients.json'
 
-const ANTHROPIC_API = 'https://api.anthropic.com/v1/messages'
-
 function formatCurrency(n) {
   if (n >= 1_000_000) return `$${(n / 1_000_000).toFixed(1)}M`
   if (n >= 1_000) return `$${(n / 1_000).toFixed(0)}K`
@@ -92,50 +90,16 @@ Best regards,
 [advisor name]`
 }
 
-// ─── Streaming API call ──────────────────────────────────────────
-async function streamGeneration(prompt, apiKey, onChunk, onDone) {
-  const res = await fetch(ANTHROPIC_API, {
+// ─── Backend API call ────────────────────────────────────────────
+async function callBackend(prompt) {
+  const res = await fetch('/api/generate', {
     method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'x-api-key': apiKey,
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
-      stream: true,
-      messages: [{ role: 'user', content: prompt }],
-    }),
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ prompt }),
   })
-
-  const reader = res.body.getReader()
-  const decoder = new TextDecoder()
-  let buffer = ''
-  let full = ''
-
-  while (true) {
-    const { done, value } = await reader.read()
-    if (done) break
-    buffer += decoder.decode(value, { stream: true })
-    const lines = buffer.split('\n')
-    buffer = lines.pop()
-    for (const line of lines) {
-      if (line.startsWith('data: ')) {
-        const data = line.slice(6)
-        if (data === '[DONE]') continue
-        try {
-          const parsed = JSON.parse(data)
-          if (parsed.type === 'content_block_delta' && parsed.delta?.text) {
-            full += parsed.delta.text
-            onChunk(full)
-          }
-        } catch {}
-      }
-    }
-  }
-  onDone(full)
+  const data = await res.json()
+  if (!res.ok) throw new Error(data.error || 'Request failed')
+  return data.response
 }
 
 // ─── Client Card ─────────────────────────────────────────────────
@@ -276,7 +240,7 @@ function ClientDetail({ client }) {
 }
 
 // ─── AI Output Panel ─────────────────────────────────────────────
-function AIPanel({ client, apiKey, onNeedKey }) {
+function AIPanel({ client }) {
   const [output, setOutput] = useState('')
   const [loading, setLoading] = useState(false)
   const [mode, setMode] = useState(null) // 'prep' | 'email'
@@ -294,7 +258,6 @@ function AIPanel({ client, apiKey, onNeedKey }) {
   }, [output])
 
   async function generate(type) {
-    if (!apiKey) { onNeedKey(); return }
     setMode(type)
     setOutput('')
     setLoading(true)
@@ -302,12 +265,11 @@ function AIPanel({ client, apiKey, onNeedKey }) {
       ? buildMeetingPrepPrompt(client)
       : buildFollowUpEmailPrompt(client)
     try {
-      await streamGeneration(prompt, apiKey, setOutput, (final) => {
-        setOutput(final)
-        setLoading(false)
-      })
+      const response = await callBackend(prompt)
+      setOutput(response)
     } catch (err) {
-      setOutput(`**Error:** ${err.message}\n\nMake sure your API key is valid.`)
+      setOutput(`**Error:** ${err.message}`)
+    } finally {
       setLoading(false)
     }
   }
@@ -348,7 +310,7 @@ function AIPanel({ client, apiKey, onNeedKey }) {
             <p className="text-sm">Select an action to generate AI-powered content</p>
           </div>
         )}
-        {loading && !output && (
+        {loading && (
           <div className="h-full flex flex-col items-center justify-center text-navy-400">
             <div className="flex gap-1.5 mb-3">
               <span className="w-2 h-2 rounded-full bg-gold-400 animate-pulse-dot" style={{ animationDelay: '0ms' }} />
@@ -358,47 +320,12 @@ function AIPanel({ client, apiKey, onNeedKey }) {
             <p className="text-sm">
               {mode === 'prep' ? 'Analyzing client data and preparing brief...' : 'Drafting personalized email...'}
             </p>
+            <p className="text-xs text-navy-500 mt-2">This may take a moment — Claude is thinking...</p>
           </div>
         )}
-        {output && (
+        {output && !loading && (
           <div className="ai-output animate-fade-in" dangerouslySetInnerHTML={{ __html: renderMarkdown(output) }} />
         )}
-        {loading && output && (
-          <span className="inline-block w-2 h-4 bg-gold-400/60 animate-pulse-dot ml-0.5 -mb-0.5" />
-        )}
-      </div>
-    </div>
-  )
-}
-
-// ─── API Key Modal ───────────────────────────────────────────────
-function ApiKeyModal({ onSave, onClose }) {
-  const [key, setKey] = useState('')
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm">
-      <div className="bg-navy-800 border border-navy-600/50 rounded-2xl p-6 w-full max-w-md shadow-2xl">
-        <h2 className="font-display text-xl text-gold-100 mb-2">API Key Required</h2>
-        <p className="text-sm text-navy-300 mb-4">
-          Enter your Anthropic API key to power the AI features. Your key stays in your browser and is never stored on a server.
-        </p>
-        <input
-          type="password"
-          value={key}
-          onChange={(e) => setKey(e.target.value)}
-          placeholder="sk-ant-..."
-          className="w-full px-4 py-3 bg-navy-900 border border-navy-600/40 rounded-xl text-navy-100 font-mono text-sm focus:outline-none focus:border-gold-500/50 mb-4"
-        />
-        <div className="flex gap-3">
-          <button onClick={onClose} className="flex-1 py-2.5 text-navy-300 hover:text-navy-100 transition-colors">
-            Cancel
-          </button>
-          <button
-            onClick={() => { if (key.trim()) onSave(key.trim()) }}
-            className="flex-1 py-2.5 bg-gold-500 text-navy-950 font-semibold rounded-xl hover:bg-gold-400 transition-colors"
-          >
-            Save Key
-          </button>
-        </div>
       </div>
     </div>
   )
@@ -407,20 +334,11 @@ function ApiKeyModal({ onSave, onClose }) {
 // ─── Main App ────────────────────────────────────────────────────
 export default function App() {
   const [selectedId, setSelectedId] = useState(clients[0].id)
-  const [apiKey, setApiKey] = useState('')
-  const [showKeyModal, setShowKeyModal] = useState(false)
 
   const selectedClient = clients.find(c => c.id === selectedId)
 
   return (
     <div className="h-screen flex flex-col overflow-hidden">
-      {showKeyModal && (
-        <ApiKeyModal
-          onSave={(k) => { setApiKey(k); setShowKeyModal(false) }}
-          onClose={() => setShowKeyModal(false)}
-        />
-      )}
-
       {/* Top bar */}
       <header className="flex items-center justify-between px-6 py-4 border-b border-navy-700/30 bg-navy-950/80 backdrop-blur-sm">
         <div className="flex items-center gap-3">
@@ -434,13 +352,10 @@ export default function App() {
             <p className="text-xs text-navy-400">Meeting Prep & Client Outreach</p>
           </div>
         </div>
-        <button
-          onClick={() => setShowKeyModal(true)}
-          className="text-xs px-3 py-1.5 rounded-lg border border-navy-600/40 text-navy-300 hover:text-gold-300 hover:border-gold-500/30 transition-colors flex items-center gap-1.5"
-        >
-          <span className={`w-2 h-2 rounded-full ${apiKey ? 'bg-emerald-400' : 'bg-navy-500'}`} />
-          {apiKey ? 'API Key Set' : 'Set API Key'}
-        </button>
+        <div className="flex items-center gap-2 text-xs text-navy-400">
+          <span className="w-2 h-2 rounded-full bg-emerald-400" />
+          Powered by Claude CLI
+        </div>
       </header>
 
       {/* Main content */}
@@ -472,11 +387,7 @@ export default function App() {
         {/* Right — AI Panel */}
         <section className="flex-1 p-5 flex flex-col min-w-0">
           {selectedClient && (
-            <AIPanel
-              client={selectedClient}
-              apiKey={apiKey}
-              onNeedKey={() => setShowKeyModal(true)}
-            />
+            <AIPanel client={selectedClient} />
           )}
         </section>
       </div>
