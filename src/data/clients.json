@@ -1,0 +1,323 @@
+[
+  {
+    "id": "cli_001",
+    "profile": {
+      "firstName": "Robert",
+      "lastName": "Hargrove",
+      "age": 58,
+      "dateOfBirth": "1967-11-03",
+      "email": "robert.hargrove@gmail.com",
+      "phone": "(832) 555-0147",
+      "address": "14 Timberwild Ln, The Woodlands, TX 77381",
+      "spouse": {
+        "firstName": "Patricia",
+        "lastName": "Hargrove",
+        "age": 56,
+        "dateOfBirth": "1969-04-22"
+      },
+      "dependents": [],
+      "employer": "ExxonMobil",
+      "title": "VP of Upstream Operations",
+      "yearsOfService": 31,
+      "annualCompensation": 485000,
+      "advisorAssigned": "Kyle McClain, CFP®",
+      "relationshipStartDate": "2019-03-15",
+      "communicationPreference": "email",
+      "riskTolerance": "moderate"
+    },
+    "portfolio": {
+      "totalAUM": 4850000,
+      "accounts": [
+        { "type": "Joint Brokerage", "balance": 1250000 },
+        { "type": "ExxonMobil Savings Plan (Voya)", "balance": 2100000 },
+        { "type": "Roth IRA (Robert)", "balance": 385000 },
+        { "type": "Traditional IRA (Patricia)", "balance": 290000 },
+        { "type": "529 Plan", "balance": 42000 },
+        { "type": "Supplemental Savings Plan (SSP)", "balance": 480000 },
+        { "type": "Supplemental Pension Plan (SPP)", "balance": 303000 }
+      ],
+      "assetAllocation": {
+        "usEquity": 0.45,
+        "internationalEquity": 0.15,
+        "fixedIncome": 0.25,
+        "alternatives": 0.05,
+        "cash": 0.05,
+        "exxonMobilStock": 0.05
+      },
+      "pensionEstimate": {
+        "lumpSum": 1850000,
+        "monthlyAnnuity": 12400,
+        "jointSurvivorAnnuity": 10200
+      },
+      "ytdPerformance": 0.082,
+      "megaRothStatus": "active",
+      "nuaEligible": true,
+      "xomSharesInSavingsPlan": 8500
+    },
+    "lifeEvents": [
+      {
+        "type": "upcoming_retirement",
+        "date": "2027-01-01",
+        "notes": "Targeting Q1 2027 retirement. Meets 55-and-15 rule. Evaluating lump sum vs annuity on pension."
+      },
+      {
+        "type": "home_purchase",
+        "date": "2025-09-15",
+        "notes": "Purchased vacation property in Fredericksburg, TX. $620K. Considering rental income strategy."
+      },
+      {
+        "type": "grandchild_birth",
+        "date": "2026-01-18",
+        "notes": "First grandchild born — daughter Emily. Wants to discuss 529 funding strategy."
+      }
+    ],
+    "meetings": {
+      "nextScheduled": "2026-04-15T14:00:00",
+      "lastMeeting": {
+        "date": "2026-01-20T10:00:00",
+        "notes": "Reviewed Q4 2025 pension segment rates. Robert concerned about rising rates reducing lump sum. Discussed NUA strategy on XOM stock. Patricia asked about long-term care insurance. Action items: (1) Model pension lump sum under different rate scenarios, (2) Get LTC quotes from 3 carriers, (3) Review 529 contribution strategy for new grandchild."
+      },
+      "openActionItems": [
+        "Model pension lump sum under Q1 and projected Q2 2026 segment rates",
+        "Obtain LTC insurance quotes — Northwestern Mutual, MassMutual, Nationwide",
+        "Prepare 529 funding analysis — front-loading vs annual contributions"
+      ]
+    }
+  },
+  {
+    "id": "cli_002",
+    "profile": {
+      "firstName": "Mei-Lin",
+      "lastName": "Zhang",
+      "age": 42,
+      "dateOfBirth": "1983-08-19",
+      "email": "meilin.zhang@outlook.com",
+      "phone": "(281) 555-0293",
+      "address": "7 Grogans Mill Dr, The Woodlands, TX 77380",
+      "spouse": {
+        "firstName": "David",
+        "lastName": "Zhang",
+        "age": 44,
+        "dateOfBirth": "1981-12-05"
+      },
+      "dependents": [
+        { "name": "Lily Zhang", "age": 12, "relationship": "daughter" },
+        { "name": "James Zhang", "age": 9, "relationship": "son" }
+      ],
+      "employer": "ExxonMobil",
+      "title": "Senior Chemical Engineer",
+      "yearsOfService": 16,
+      "annualCompensation": 215000,
+      "advisorAssigned": "Jeff Gorrell, CFP®",
+      "relationshipStartDate": "2022-06-01",
+      "communicationPreference": "phone",
+      "riskTolerance": "moderately aggressive"
+    },
+    "portfolio": {
+      "totalAUM": 1420000,
+      "accounts": [
+        { "type": "Joint Brokerage", "balance": 180000 },
+        { "type": "ExxonMobil Savings Plan (Voya)", "balance": 780000 },
+        { "type": "Roth IRA (Mei-Lin)", "balance": 165000 },
+        { "type": "Roth IRA (David)", "balance": 140000 },
+        { "type": "529 Plan (Lily)", "balance": 85000 },
+        { "type": "529 Plan (James)", "balance": 70000 }
+      ],
+      "assetAllocation": {
+        "usEquity": 0.55,
+        "internationalEquity": 0.20,
+        "fixedIncome": 0.10,
+        "alternatives": 0.05,
+        "cash": 0.05,
+        "exxonMobilStock": 0.05
+      },
+      "pensionEstimate": {
+        "lumpSum": 620000,
+        "monthlyAnnuity": 4100,
+        "jointSurvivorAnnuity": 3400
+      },
+      "ytdPerformance": 0.094,
+      "megaRothStatus": "not_started",
+      "nuaEligible": false,
+      "xomSharesInSavingsPlan": 2200
+    },
+    "lifeEvents": [
+      {
+        "type": "education_planning",
+        "date": "2030-08-01",
+        "notes": "Lily starts college in ~4 years. Wants to ensure 529s are on track for both kids."
+      },
+      {
+        "type": "stock_vesting",
+        "date": "2026-06-15",
+        "notes": "RSU vest of ~$85K coming in June. Wants tax-efficient strategy for proceeds."
+      }
+    ],
+    "meetings": {
+      "nextScheduled": "2026-04-10T09:30:00",
+      "lastMeeting": {
+        "date": "2025-11-14T11:00:00",
+        "notes": "Annual review. Mei-Lin interested in Mega Roth strategy but hasn't started yet. David considering career change from oil & gas — may impact family insurance. Discussed RSU vesting schedule. Action items: (1) Prepare Mega Roth implementation walkthrough, (2) Review family health insurance options if David leaves employer."
+      },
+      "openActionItems": [
+        "Prepare Mega Roth implementation guide with step-by-step Voya instructions",
+        "Model health insurance scenarios if David changes employers",
+        "Review 529 projections — are contributions on track for both kids?"
+      ]
+    }
+  },
+  {
+    "id": "cli_003",
+    "profile": {
+      "firstName": "Thomas",
+      "lastName": "Brennan",
+      "age": 64,
+      "dateOfBirth": "1961-06-28",
+      "email": "tom.brennan@yahoo.com",
+      "phone": "(936) 555-0418",
+      "address": "22 Sweetwater Cove, Conroe, TX 77304",
+      "spouse": null,
+      "dependents": [],
+      "employer": "Retired — ExxonMobil (2024)",
+      "title": "Former Director of Refining Operations",
+      "yearsOfService": 34,
+      "annualCompensation": 0,
+      "advisorAssigned": "Kyle McClain, CFP®",
+      "relationshipStartDate": "2016-09-20",
+      "communicationPreference": "email",
+      "riskTolerance": "conservative"
+    },
+    "portfolio": {
+      "totalAUM": 6200000,
+      "accounts": [
+        { "type": "Traditional IRA (Rollover)", "balance": 2800000 },
+        { "type": "Roth IRA", "balance": 520000 },
+        { "type": "Individual Brokerage", "balance": 1950000 },
+        { "type": "Municipal Bond Portfolio", "balance": 680000 },
+        { "type": "Cash / Money Market", "balance": 250000 }
+      ],
+      "assetAllocation": {
+        "usEquity": 0.30,
+        "internationalEquity": 0.10,
+        "fixedIncome": 0.40,
+        "alternatives": 0.05,
+        "cash": 0.10,
+        "exxonMobilStock": 0.05
+      },
+      "pensionEstimate": null,
+      "ytdPerformance": 0.054,
+      "megaRothStatus": "n/a",
+      "nuaEligible": false,
+      "xomSharesInSavingsPlan": 0,
+      "pensionElection": "Lump sum rolled to IRA at retirement — $2.1M",
+      "rmdStartYear": 2036,
+      "annualWithdrawalRate": 0.035
+    },
+    "lifeEvents": [
+      {
+        "type": "divorce_finalized",
+        "date": "2025-04-10",
+        "notes": "Divorce from Karen finalized. Assets split per QDRO. Thomas retained primary residence and IRA. Karen received brokerage account split ($800K)."
+      },
+      {
+        "type": "estate_plan_update",
+        "date": "2026-02-01",
+        "notes": "Needs to update beneficiaries on all accounts post-divorce. Current will still names Karen. Estate attorney referral requested."
+      },
+      {
+        "type": "health_concern",
+        "date": "2025-12-01",
+        "notes": "Knee replacement surgery in December. Recovering well. Concerned about future healthcare costs in retirement."
+      }
+    ],
+    "meetings": {
+      "nextScheduled": "2026-04-22T15:00:00",
+      "lastMeeting": {
+        "date": "2026-02-05T13:00:00",
+        "notes": "Discussed estate plan urgency — all beneficiaries still list Karen. Thomas aware but hasn't acted. Reviewed Roth conversion ladder strategy to reduce future RMD burden. Discussed healthcare — currently on COBRA, needs to transition to ACA marketplace or Medicare in 2 years. Action items: (1) Send estate attorney referral, (2) Model Roth conversion amounts for 2026, (3) Research ACA vs COBRA cost comparison."
+      },
+      "openActionItems": [
+        "Send estate attorney referral — confirm Thomas has scheduled appointment",
+        "Model Roth conversion ladder — optimal amounts for 2026 and 2027 to stay within 24% bracket",
+        "Compare COBRA continuation vs ACA marketplace plans for remaining 2 years before Medicare"
+      ]
+    }
+  },
+  {
+    "id": "cli_004",
+    "profile": {
+      "firstName": "Sandra",
+      "lastName": "Okafor",
+      "age": 71,
+      "dateOfBirth": "1954-09-14",
+      "email": "sandra.okafor@gmail.com",
+      "phone": "(713) 555-0562",
+      "address": "3 Augusta Pines Dr, Spring, TX 77389",
+      "spouse": null,
+      "dependents": [],
+      "employer": "Retired — ExxonMobil (2018)",
+      "title": "Former Senior Geologist",
+      "yearsOfService": 28,
+      "annualCompensation": 0,
+      "advisorAssigned": "Jeff Gorrell, CFP®",
+      "relationshipStartDate": "2014-01-10",
+      "communicationPreference": "phone",
+      "riskTolerance": "conservative",
+      "notes": "Surviving spouse — husband Michael passed in 2023. Very detail-oriented, appreciates thorough explanations."
+    },
+    "portfolio": {
+      "totalAUM": 3100000,
+      "accounts": [
+        { "type": "Traditional IRA (Inherited from Michael)", "balance": 890000 },
+        { "type": "Traditional IRA (Sandra)", "balance": 1050000 },
+        { "type": "Roth IRA", "balance": 310000 },
+        { "type": "Individual Brokerage", "balance": 620000 },
+        { "type": "Cash / Money Market", "balance": 230000 }
+      ],
+      "assetAllocation": {
+        "usEquity": 0.25,
+        "internationalEquity": 0.05,
+        "fixedIncome": 0.45,
+        "alternatives": 0.05,
+        "cash": 0.15,
+        "exxonMobilStock": 0.05
+      },
+      "pensionElection": "Joint & Survivor annuity — receiving $6,800/month (continues at same rate as surviving spouse)",
+      "ytdPerformance": 0.038,
+      "rmdRequired": true,
+      "rmdAmount2026": 78500,
+      "rmdTakenYTD": 19625,
+      "socialSecurityMonthly": 3200,
+      "annualWithdrawalRate": 0.03
+    },
+    "lifeEvents": [
+      {
+        "type": "charitable_giving",
+        "date": "2026-03-01",
+        "notes": "Sandra wants to increase charitable giving in Michael's memory. Interested in Qualified Charitable Distributions (QCDs) from IRA to reduce taxable income."
+      },
+      {
+        "type": "family_support",
+        "date": "2026-01-15",
+        "notes": "Helping grandson Marcus with college tuition — paying directly to university. Wants to understand gift tax implications."
+      },
+      {
+        "type": "home_downsizing",
+        "date": "2026-06-01",
+        "notes": "Considering selling primary residence and moving to a senior living community. Home estimated at $750K. Wants to understand capital gains exclusion."
+      }
+    ],
+    "meetings": {
+      "nextScheduled": "2026-04-08T10:00:00",
+      "lastMeeting": {
+        "date": "2026-01-22T10:00:00",
+        "notes": "Reviewed 2025 tax return draft. RMDs from both IRAs on track. Discussed QCD strategy — Sandra wants to donate $25K to Houston Food Bank and $15K to her church via QCD. Reviewed direct tuition payments for Marcus — confirmed no gift tax filing needed. Discussed downsizing timeline. Action items: (1) Coordinate QCD with custodian before April 15, (2) Get updated home valuation for capital gains analysis, (3) Research senior living communities in Spring/Woodlands area."
+      },
+      "openActionItems": [
+        "Coordinate QCD distributions — $25K to Houston Food Bank, $15K to Grace Community Church",
+        "Request updated home appraisal or CMA for capital gains exclusion analysis",
+        "Compile list of senior living communities with pricing — The Woodlands and Spring area"
+      ]
+    }
+  }
+]
